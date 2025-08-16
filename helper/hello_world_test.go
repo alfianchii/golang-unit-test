@@ -61,3 +61,17 @@ func TestHelloWorldSkip(t *testing.T) {
 
 	fmt.Println("TestHelloWorldRequire executed!")
 }
+
+func TestMySubTest(t *testing.T) {
+	// go test ./... -run=TestMySubTest/Taka
+	// go test ./... -run=/Taka
+	t.Run("Taka", func(t *testing.T) {
+		result := HelloWorld("Taka")
+		require.Equal(t, "Hello, Taka!", result, "Result is not 'Hello, Taka!'")
+	})
+	// go test ./... -run=TestMySubTest/Alfian
+	t.Run("Alfian", func(t *testing.T) {
+		result := HelloWorld("Alfian")
+		require.Equal(t, "Hello, Alfian!", result, "Result is not 'Hello, Alfian!'")
+	})
+}
