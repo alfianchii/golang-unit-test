@@ -9,6 +9,12 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+func TestMain(m *testing.M) {
+	fmt.Println("BEFORE unit test")
+	m.Run()
+	fmt.Println("AFTER unit test")
+}
+
 func TestHelloWorldAlfian(t *testing.T) {
 	result := HelloWorld("Alfian")
 
@@ -20,7 +26,7 @@ func TestHelloWorldAlfian(t *testing.T) {
 }
 
 func TestHelloWorldTaka(t *testing.T) {
-	result := HelloWorld("Alfian")
+	result := HelloWorld("Taka")
 
 	if result != "Hello, Taka!" {
 		t.Fatal("Result is not 'Hello, Taka!'")
