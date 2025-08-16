@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/alfianchii/golang-unit-test/helper"
+)
 
 func main() {
-	fmt.Println("こんにちは！")
+	var result string = helper.HelloWorld("OK")
+	fmt.Println(result)
 }
