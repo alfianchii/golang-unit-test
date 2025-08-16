@@ -2,6 +2,7 @@ package helper
 
 import (
 	"fmt"
+	"runtime"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -39,6 +40,17 @@ func TestHelloWorldAssert(t *testing.T) {
 func TestHelloWorldRequire(t *testing.T) {
 	result := HelloWorld("Taka")
 
+	require.Equal(t, "Hello, Taka!", result, "Result is not 'Hello, Taka!'")
+
+	fmt.Println("TestHelloWorldRequire executed!")
+}
+
+func TestHelloWorldSkip(t *testing.T) {
+	if runtime.GOOS == "darwin" {
+		t.Skip("Unit test doesn't work on MacOS.")
+	}
+	
+	result := HelloWorld("Taka")
 	require.Equal(t, "Hello, Taka!", result, "Result is not 'Hello, Taka!'")
 
 	fmt.Println("TestHelloWorldRequire executed!")
