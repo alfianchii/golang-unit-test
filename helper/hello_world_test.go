@@ -15,6 +15,11 @@ type TableTest struct {
 	want string
 }
 
+type TableBenchmark struct {
+	name string
+	request string
+}
+
 // go test -v -bench=.
 // go test -v -run=TestNothing -bench=.
 func BenchmarkHelloWorld(b *testing.B) {
@@ -42,6 +47,22 @@ func BenchmarkHelloWorldSub(b *testing.B) {
 			HelloWorld("Alfian Taka")
 		}
 	})
+}
+
+func BenchmarkHelloWorldTable(b *testing.B) {
+	var benchmarks []TableBenchmark = []TableBenchmark{
+		{ name: "Taka", request: "Taka" },
+		{ name: "AlfianTaka", request: "Alfian Taka" },
+		{ name: "SirPrawoboSubinato)", request: "Sir Prawobo Subinato" },
+	}
+
+	for _, bench := range benchmarks {
+		b.Run(bench.name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				HelloWorld(bench.request)
+			}
+		})
+	}
 }
 
 func TestMain(m *testing.M) {
