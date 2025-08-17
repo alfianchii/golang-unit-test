@@ -29,6 +29,21 @@ func BenchmarkHelloWorldAlfianTaka(b *testing.B) {
 	}
 }
 
+// go test -v -run=TestNothing -bench=BenchmarkHelloWorldSub/Alfian\ Taka
+func BenchmarkHelloWorldSub(b *testing.B) {
+	b.Run("Taka", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWorld("Taka")
+		}
+	})
+
+	b.Run("Alfian Taka", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWorld("Alfian Taka")
+		}
+	})
+}
+
 func TestMain(m *testing.M) {
 	fmt.Println("BEFORE unit test")
 	m.Run()
