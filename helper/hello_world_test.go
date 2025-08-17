@@ -15,6 +15,20 @@ type TableTest struct {
 	want string
 }
 
+// go test -v -bench=.
+// go test -v -run=TestNothing -bench=.
+func BenchmarkHelloWorld(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		HelloWorld("Taka")
+	}
+}
+
+func BenchmarkHelloWorldAlfianTaka(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		HelloWorld("Alfian Taka")
+	}
+}
+
 func TestMain(m *testing.M) {
 	fmt.Println("BEFORE unit test")
 	m.Run()
